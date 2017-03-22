@@ -1,0 +1,18 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="filmDAO" class="com.recommender.myapp.dao.Impl.FilmDaoImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="userDAO" class="com.recommender.myapp.dao.Impl.UserDaoImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="ratingDAO" class="com.recommender.myapp.dao.Impl.RatingDaoImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+</beans>
