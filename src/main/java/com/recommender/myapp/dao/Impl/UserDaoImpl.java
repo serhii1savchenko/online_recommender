@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import com.recommender.myapp.dao.UserDao;
 import com.recommender.myapp.model.User;
 import com.recommender.myapp.model.Film;
+import com.recommender.myapp.model.Role;
 
 public class UserDaoImpl implements UserDao {
 	
@@ -30,6 +31,25 @@ public class UserDaoImpl implements UserDao {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, user.getName());
 			ps.setString(2, user.getPassword());
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		// user role insertion
+		sql = "INSERT INTO userrole (userId, roleId) VALUES (?, ?)";
+		conn = null;
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, user.getId());
+			ps.setInt(2, user.getRole().getId());
 			ps.executeUpdate();
 			ps.close();
 		} catch (SQLException e) {
@@ -155,6 +175,52 @@ public class UserDaoImpl implements UserDao {
 			if (conn != null) {
 				try {
 					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
+
+	@Override
+	public User findByUsername(String username) {
+		String sql = "SELECT * FROM users WHERE name = ?";
+		String userRole = "SELECT role.idRole, role.role FROM userrole INNER JOIN role WHERE userrole.userId = ?";
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			User user = null;
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				user = new User(
+					rs.getInt("idUsers"),
+					rs.getString("name"),
+					rs.getString("password")
+				);
+			}
+			rs.close();
+			ps.close();
+			//
+			PreparedStatement ps1 = conn.prepareStatement(userRole);
+			ps1.setInt(1, user.getId());
+			Role role = null;
+			ResultSet rs1 = ps1.executeQuery();
+			if (rs.next()) {
+				role = new Role(
+					rs1.getInt(1),
+					rs1.getString(2)
+				);
+			}
+			rs1.close();
+			ps1.close();
+			if(role!=null) user.setRole(role);
+			return user;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+				conn.close();
 				} catch (SQLException e) {}
 			}
 		}

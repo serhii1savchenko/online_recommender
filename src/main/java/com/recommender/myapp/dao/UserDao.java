@@ -12,5 +12,6 @@ public interface UserDao {
 	public User getById (int id);
 	public List<Film> getUserFilms (int id);
 	public void remove(int id);
+	public User findByUsername (String username);
 	
 }
