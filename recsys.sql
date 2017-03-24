@@ -1,6 +1,5 @@
 INSERT INTO `role` (`role`) VALUES
-('ADMIN'),
-('USER');
+('ADMIN'), ('USER');
 
 INSERT INTO `users` (`name`, `password`) VALUES
 ('Serhii', '25d55ad283aa400af464c76d713c07ad');
@@ -19,3 +18,6 @@ INSERT INTO `film` (`title`, `yr`, `poster`) VALUES
 
 INSERT INTO `rating` (`userId`, `filmId`, `rating`) VALUES
 (1, 1, 4.5);
+
+INSERT INTO `rating` (`userId`, `filmId`, `rating`) VALUES
+(2, 1, 5);
