@@ -6,14 +6,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.my.recommender.dao.impl.UserDaoImpl;
+import com.my.recommender.dao.UserDao;
 import com.my.recommender.model.UserAuth;
 
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Autowired
-	private UserDaoImpl userDao;
+	private UserDao userDao;
 
 	@Override
 	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {

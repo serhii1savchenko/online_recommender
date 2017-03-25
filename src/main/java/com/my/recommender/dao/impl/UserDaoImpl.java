@@ -15,18 +15,23 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.my.recommender.dao.UserDao;
 import com.my.recommender.model.Film;
 import com.my.recommender.model.User;
 import com.my.recommender.model.UserAuth;
 
 @Repository
-public class UserDaoImpl{
+public class UserDaoImpl implements UserDao{
 
 	private static final String SQL_SELECT_USER_AUTH_BY_NAME = "SELECT users.idUser, users.name, users.password, roles.role FROM users INNER JOIN roles ON users.roleId = roles.idRole WHERE users.name = ?";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	/* (non-Javadoc)
+	 * @see com.my.recommender.dao.impl.UserDao#insert(com.my.recommender.model.User)
+	 */
+	@Override
 	public void insert(User user) {
 		String sql = "INSERT INTO users (name, password, roleId) VALUES (?, ?, ?)";
 		Connection conn = null;
@@ -49,6 +54,10 @@ public class UserDaoImpl{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.my.recommender.dao.impl.UserDao#getAll()
+	 */
+	@Override
 	public List<User> getAll() {
 		List<User> users = new ArrayList<User>();
 		String sql = "SELECT * FROM users";
@@ -79,6 +88,10 @@ public class UserDaoImpl{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.my.recommender.dao.impl.UserDao#getById(int)
+	 */
+	@Override
 	public User getById(int id) {
 		String sql = "SELECT * FROM users WHERE idUser = ?";
 		Connection conn = null;
@@ -109,6 +122,10 @@ public class UserDaoImpl{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.my.recommender.dao.impl.UserDao#getUserFilms(int)
+	 */
+	@Override
 	public List<Film> getUserFilms(int userId) {
 		List<Film> films = new ArrayList<Film>();
 		String sql = "SELECT films.idFilm, films.title, films.yr, films.poster FROM films INNER JOIN ratings ON films.idFilm = ratings.filmId " + 
@@ -142,6 +159,10 @@ public class UserDaoImpl{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.my.recommender.dao.impl.UserDao#remove(int)
+	 */
+	@Override
 	public void remove(int id) {
 		String sql = "DELETE FROM users WHERE idUser = ?";
 		Connection conn = null;
@@ -162,6 +183,10 @@ public class UserDaoImpl{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.my.recommender.dao.impl.UserDao#getUserAuth(java.lang.String)
+	 */
+	@Override
 	public UserAuth getUserAuth(String name) {
 		List<UserAuth> list = jdbcTemplate.query(SQL_SELECT_USER_AUTH_BY_NAME, new RowMapper<UserAuth>() {
 			@Override
@@ -171,7 +196,6 @@ public class UserDaoImpl{
 		}, name);
 		return list.isEmpty() ? null : list.get(0);
 	}
-	
 	
 	// Custom md5 hash
 	public static String md5Custom(String st) {
