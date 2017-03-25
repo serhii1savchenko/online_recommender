@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<context:component-scan
-		base-package="com.my.security.dao.impl, com.my.security.services" />
+		base-package="com.my.recommender.*" />
 	<context:annotation-config />
 	
 	<aop:aspectj-autoproxy />

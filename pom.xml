@@ -16,16 +16,16 @@
 		<junit.version>4.12</junit.version>
 		<log4j.version>2.6.1</log4j.version>
 	</properties>
-	
+
 
 	<dependencies>
-	<!-- AspectJ -->
+		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.8.9</version>
 		</dependency>
-		
+
 		<!-- Apache Commons Upload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -67,7 +67,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
 
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
 		<dependency>
@@ -91,7 +91,7 @@
 			<version>1.7</version>
 		</dependency>
 
-		
+
 		<!-- Spring Security START -->
 		<!-- http://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
@@ -148,9 +148,9 @@
 
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
-    		<groupId>mysql</groupId>
-    		<artifactId>mysql-connector-java</artifactId>
-   			<version>5.1.39</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.39</version>
 		</dependency>
 
 		<!-- Jackson Json Mapper -->
@@ -169,8 +169,19 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.7.2</version>
 		</dependency>
-		
-			<!-- Log4j -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+
+		<!-- Log4j -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
@@ -190,7 +201,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>SecurityExample</finalName>
+		<finalName>OnlineRecommender</finalName>
 
 		<plugins>
 			<plugin>

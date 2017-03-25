@@ -1,13 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="context" value="${pageContext.request.contextPath}" />
+<script type="text/javascript"> var context = '${pageContext.request.contextPath}';</script> 
 <html>
 <head>
 	<title>Film Recommender</title>
+	<!-- jQuery -->
+	<script type="text/javascript" src="<c:url value="/resources/jquery-3.2.0.min.js"/>"/></script>
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<!-- jQuery -->
-	<script type="text/javascript" src="<c:url value="/resources/jquery-1.10.2.min.js"/>"/></script>
 	<!-- Google Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
