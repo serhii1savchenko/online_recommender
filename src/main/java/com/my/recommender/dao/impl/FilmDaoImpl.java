@@ -21,9 +21,6 @@ public class FilmDaoImpl implements FilmDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.FilmDao#insert(com.my.recommender.model.Film)
-	 */
 	@Override
 	public void insert(Film film) {
 		String sql = "INSERT INTO films (title, yr, poster) VALUES (?, ?, ?)";
@@ -47,9 +44,6 @@ public class FilmDaoImpl implements FilmDao {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.FilmDao#getAll()
-	 */
 	@Override
 	public List<Film> getAll() {
 		List<Film> films = new ArrayList<Film>();
@@ -82,9 +76,6 @@ public class FilmDaoImpl implements FilmDao {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.FilmDao#getById(int)
-	 */
 	@Override
 	public Film getById(int id) {
 		String sql = "SELECT * FROM films WHERE idFilm = ?";
@@ -117,9 +108,6 @@ public class FilmDaoImpl implements FilmDao {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.FilmDao#getFilmUsers(int)
-	 */
 	@Override
 	public List<User> getFilmUsers(int filmId) {
 		List<User> users = new ArrayList<User>();
@@ -153,9 +141,6 @@ public class FilmDaoImpl implements FilmDao {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.FilmDao#remove(int)
-	 */
 	@Override
 	public void remove(int id) {
 		String sql = "DELETE FROM films WHERE idFilm = ?";

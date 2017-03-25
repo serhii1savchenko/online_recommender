@@ -28,9 +28,6 @@ public class UserDaoImpl implements UserDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.UserDao#insert(com.my.recommender.model.User)
-	 */
 	@Override
 	public void insert(User user) {
 		String sql = "INSERT INTO users (name, password, roleId) VALUES (?, ?, ?)";
@@ -54,9 +51,6 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.UserDao#getAll()
-	 */
 	@Override
 	public List<User> getAll() {
 		List<User> users = new ArrayList<User>();
@@ -88,9 +82,6 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.UserDao#getById(int)
-	 */
 	@Override
 	public User getById(int id) {
 		String sql = "SELECT * FROM users WHERE idUser = ?";
@@ -122,9 +113,6 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.UserDao#getUserFilms(int)
-	 */
 	@Override
 	public List<Film> getUserFilms(int userId) {
 		List<Film> films = new ArrayList<Film>();
@@ -159,9 +147,6 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.UserDao#remove(int)
-	 */
 	@Override
 	public void remove(int id) {
 		String sql = "DELETE FROM users WHERE idUser = ?";
@@ -183,9 +168,6 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.UserDao#getUserAuth(java.lang.String)
-	 */
 	@Override
 	public UserAuth getUserAuth(String name) {
 		List<UserAuth> list = jdbcTemplate.query(SQL_SELECT_USER_AUTH_BY_NAME, new RowMapper<UserAuth>() {

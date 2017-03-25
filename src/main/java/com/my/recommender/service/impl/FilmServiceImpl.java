@@ -3,13 +3,13 @@ package com.my.recommender.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.my.recommender.dao.RatingDao;
+import com.my.recommender.dao.FilmDao;
 
 @Component
-public class RatingServiceImpl {
+public class FilmServiceImpl {
 	
 	@Autowired
-	private RatingDao ratingDao;
+	private FilmDao filmDao;
 	
 	
 	

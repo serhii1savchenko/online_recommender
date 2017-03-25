@@ -21,9 +21,6 @@ public class RatingDaoImpl implements RatingDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.RatingDao#insert(com.my.recommender.model.Rating)
-	 */
 	@Override
 	public void insert(Rating rating) {
 		String sql = "INSERT INTO ratings (userId, filmId, rating) VALUES (?, ?, ?)";
@@ -47,9 +44,6 @@ public class RatingDaoImpl implements RatingDao {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.RatingDao#update(int, double)
-	 */
 	@Override
 	public void update(int id, double newRating) {
 		String sql = "UPDATE ratings SET rating = ? WHERE idRating = ?";
@@ -72,9 +66,6 @@ public class RatingDaoImpl implements RatingDao {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.RatingDao#getAll()
-	 */
 	@Override
 	public List<Rating> getAll() {
 		List<Rating> ratings = new ArrayList<Rating>();
@@ -107,9 +98,6 @@ public class RatingDaoImpl implements RatingDao {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.RatingDao#getByUserFilm(int, int)
-	 */
 	@Override
 	public Rating getByUserFilm(int userId, int filmId) {
 		String sql = "SELECT * FROM ratings WHERE userId = ? AND filmId = ?";
@@ -143,9 +131,6 @@ public class RatingDaoImpl implements RatingDao {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.my.recommender.dao.impl.RatingDao#getFilmAverageRating(int)
-	 */
 	@Override
 	public double getFilmAverageRating(int filmId) {
 		String sql = "SELECT AVG(rating) AS avg FROM ratings WHERE filmId = ?";
