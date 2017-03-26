@@ -1,4 +1,16 @@
+<%@ page session="false" %>
 <%@include file="header.jsp" %>
+<!-- Resolves issues when user press "Back" button after Logging in -->
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	  if (window.history && window.history.pushState) {
+	    window.history.pushState('forward', null, './#forward');
+	    $(window).on('popstate', function() {
+	      alert('Back button was pressed.');
+	    });
+	  }
+	});
+</script>
 
 <div class="container-fluid">
 	<div class="row">

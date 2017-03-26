@@ -13,8 +13,10 @@ function register() {
 	    alert('jQuery is not installed');
 	}
 */	
-	if(pass != passC){
-		alert("Passwords don't match");
+	if(name==""){
+		alert("Username coldn't be empty!");
+	}else if(pass != passC || pass=="" || pass==""){
+		alert("Passwords don't match or one is empty!");
 	}else{
 	    $.ajax({
 	        cache: false,
@@ -27,14 +29,14 @@ function register() {
 	    }).done(function (data) {
 	    	//alert('success');
 	    	document.getElementsByClassName("okBox")[0].style.display = "block";
-	    	document.getElementsByClassName("okBox")[0].style.backgroundColor = "green";
+	    	document.getElementsByClassName("okBox")[0].style.backgroundColor = "#00FF00";
 	    	document.getElementsByClassName("okBox")[0].style.width = "30%";
 	    	setTimeout(redirect, 1000);
 	    	function redirect() { document.location.href = context+'/login'; }
 	    }).fail(function (error) {
 	    	//alert(error+"ERROR");
 	    	document.getElementsByClassName("alertBox")[0].style.display = "block";
-	    	document.getElementsByClassName("alertBox")[0].style.backgroundColor = "red";
+	    	document.getElementsByClassName("alertBox")[0].style.backgroundColor = "#F08080";
 	    	document.getElementsByClassName("alertBox")[0].style.width = "30%";
 	    });
 	}

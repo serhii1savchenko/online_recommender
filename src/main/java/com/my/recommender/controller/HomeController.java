@@ -3,10 +3,6 @@ package com.my.recommender.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-/**
- * Handles requests for the all pages
- */
-
 @Controller
 public class HomeController {
 

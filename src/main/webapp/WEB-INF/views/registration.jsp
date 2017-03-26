@@ -1,5 +1,5 @@
+<%@ page session="false" %>
 <%@include file="header.jsp" %>
-
 
 <div class="container-fluid">
 	<div class="row">
@@ -34,13 +34,13 @@
 <center>
 	<div class="okBox" style="display:none">
 		Success!
-	</div>
+	</div><br/>
 	<div class="alertBox" style="display:none">
 		This username is invalid. Try another one!
 	</div>
 </center>
-<%@include file="footer.jsp" %>
 
+<%@include file="footer.jsp" %>
 <script type="text/javascript" src="<c:url value="/resources/js/pages/registration.js"/>"></script>
 </body>
 </html>

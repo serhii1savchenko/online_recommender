@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <script type="text/javascript"> var context = '${pageContext.request.contextPath}';</script> 
 <html>
@@ -21,16 +22,29 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="<c:url value="/home"/>">Online Film Recommender</a>
+      <a class="navbar-brand" href="<c:url value="/home"/>" style="color:#FFD700;">Online Film Recommender</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="#">Add film</a></li>
-      <li><a href="#">Most popular films</a></li>
-      <li><a href="#">Renew recommender engine</a></li>
+      <!-- ADMIN menu -->
+      <sec:authorize access="hasRole('ADMIN')">
+      	<li><a href="#">Add film</a></li>
+      	<li><a href="#">Renew recommender engine</a></li>
+      </sec:authorize>
+      <!-- USER menu -->
+      <sec:authorize access="hasRole('USER')">
+      	<li><a href="#">All films</a></li>
+      	<li><a href="#">My films</a></li>
+      	<li><a href="#">Top recommended for me</a></li>
+      </sec:authorize>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="<c:url value="/registration"/>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="<c:url value="/login"/>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <sec:authorize access="isAnonymous()">
+      	<li><a href="<c:url value="/registration"/>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      	<li><a href="<c:url value="/login"/>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </sec:authorize>
+      <sec:authorize access="isAuthenticated()">
+      	<li><a href="<c:url value="/logout"/>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </sec:authorize>
     </ul>
   </div>
 </nav>
