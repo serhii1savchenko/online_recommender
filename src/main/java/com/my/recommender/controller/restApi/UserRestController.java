@@ -10,7 +10,7 @@ import com.my.recommender.model.User;
 import com.my.recommender.service.impl.UserServiceImpl;
 
 @RestController
-public class UserController {
+public class UserRestController {
 	
 	@Autowired
 	UserServiceImpl userService;

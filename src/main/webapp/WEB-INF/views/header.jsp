@@ -3,6 +3,7 @@
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <script type="text/javascript"> var context = '${pageContext.request.contextPath}';</script> 
 <html>
+
 <head>
 	<title>Film Recommender</title>
 	<!-- jQuery -->
@@ -34,7 +35,7 @@
       <sec:authorize access="hasRole('USER')">
       	<li><a href="#">All films</a></li>
       	<li><a href="#">My films</a></li>
-      	<li><a href="#">Top recommended for me</a></li>
+      	<li><a href="#">Top 10 recommended</a></li>
       </sec:authorize>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -48,4 +49,3 @@
     </ul>
   </div>
 </nav>
-<br/>

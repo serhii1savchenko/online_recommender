@@ -12,9 +12,10 @@ import org.springframework.stereotype.Component;
 import com.my.recommender.dao.DataDao;
 import com.my.recommender.dao.RatingDao;
 import com.my.recommender.model.Rating;
+import com.my.recommender.service.RecommenderService;
 
 @Component
-public class RecommenderServiceImpl {
+public class RecommenderServiceImpl implements RecommenderService {
 
 	@Autowired
 	private RatingDao ratingDao;
@@ -22,6 +23,7 @@ public class RecommenderServiceImpl {
 	@Autowired
 	private DataDao dataDao;
 
+	@Override
 	public File getParsedDataFile(){
 		List<Rating> ratings = ratingDao.getAll();
 		String path = "ratings.txt";
@@ -56,14 +58,22 @@ public class RecommenderServiceImpl {
 		return file;
 	}
 	
+	@Override
 	public void insertToDatabase(File file){
 		dataDao.insert(file);
 	}
 	
+	@Override
 	public File getLastFromDatabase(){
 		String path = dataDao.getLast();
 		File last = new File (path);
 		return last;
+	}
+
+	@Override
+	public double getPrediction(int userId, int filmId) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }
