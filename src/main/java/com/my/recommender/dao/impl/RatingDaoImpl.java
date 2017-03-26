@@ -107,7 +107,7 @@ public class RatingDaoImpl implements RatingDao {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, userId);
 			ps.setInt(2, filmId);
-			Rating rating = null;
+			Rating rating = new Rating();;
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				rating = new Rating(

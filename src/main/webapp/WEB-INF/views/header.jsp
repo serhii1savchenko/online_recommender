@@ -1,9 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
-<script type="text/javascript"> var context = '${pageContext.request.contextPath}';</script> 
-<html>
+<script type="text/javascript"> var context = '${pageContext.request.contextPath}';</script>
 
+<html>
 <head>
 	<title>Film Recommender</title>
 	<!-- jQuery -->
@@ -17,13 +17,15 @@
 	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 	<!-- My style -->
 	<link rel="stylesheet" href="<c:url value="/resources/style/style.css"/>" >
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="<c:url value="/resources/favicon.ico"/>"/>
 </head>
 
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" style="border-radius: 0 !important;">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="<c:url value="/home"/>" style="color:#FFD700;">Online Film Recommender</a>
+      <a class="navbar-brand" href="<c:url value="/home"/>" style="color:#FFD700;">Film Recommender</a>
     </div>
     <ul class="nav navbar-nav">
       <!-- ADMIN menu -->
@@ -33,7 +35,7 @@
       </sec:authorize>
       <!-- USER menu -->
       <sec:authorize access="hasRole('USER')">
-      	<li><a href="#">All films</a></li>
+      	<li><a href="<c:url value="/user/allFilms"/>">All films</a></li>
       	<li><a href="#">My films</a></li>
       	<li><a href="#">Top 10 recommended</a></li>
       </sec:authorize>

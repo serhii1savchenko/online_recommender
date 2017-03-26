@@ -1,5 +1,8 @@
 package com.my.recommender.controller;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,24 +28,25 @@ public class FilmController {
 	@Autowired
 	RatingService ratingService;
 	
-	@GetMapping( "allFilms" )
+	@GetMapping( "user/allFilms" )
 	public String allFilms(Model model) {
-		model.addAttribute("films", filmService.getAllFilms());
+		model.addAttribute("films", filmService.getAllFilmsWithAvgRating());
 		return "allFilms";
 	}
 	
-	@GetMapping( "topRecommended" )												// top 10 movies for current user
+	@GetMapping( "user/topRecommended" )												// top 10 movies for current user
 	public String topRecommended(Model model, @SessionAttribute int id) {
 		model.addAttribute("films", filmService.getTopRecommended(id));
 		return "topRecommended";
 	}
 	
-	@GetMapping( "film/{filmId}" )
+	@GetMapping( "user/film/{filmId}" )
 	public String allFilms(Model model, @PathVariable("filmId") int filmId, @SessionAttribute int id) {
 		model.addAttribute("film", filmService.getFilmById(filmId));
 		model.addAttribute("prediction", recommenderService.getPrediction(id, filmId));
 		model.addAttribute("real", ratingService.getRating(id, filmId));
-		return "allFilms";
+		return "film";
 	}
+	
 	
 }

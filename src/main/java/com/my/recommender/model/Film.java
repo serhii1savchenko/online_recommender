@@ -7,21 +7,29 @@ public class Film{
 	private int id;
 	private String title;
 	private int year;
-	private InputStream poster;
+	private String poster;
 	private double avgRating;
 	private double exactUserRating;
+	private InputStream posterForDownload;
 
-	public Film(int id, String title, int year, InputStream poster) {
+	public Film(int id, String title, int year, String poster) {
 		this.id = id;
 		this.title = title;
 		this.year = year;
 		this.poster = poster;
 	}
 
-	public Film(String title, int year, InputStream poster) {
+	public Film(String title, int year, String poster) {
 		this.title = title;
 		this.year = year;
 		this.poster = poster;
+	}
+	
+	//for downloading TO database
+	public Film(String title, int year, InputStream posterForDownload) {
+		this.title = title;
+		this.year = year;
+		this.posterForDownload = posterForDownload;
 	}
 
 	public Film() {
@@ -45,10 +53,10 @@ public class Film{
 	public void setYear(int year) {
 		this.year = year;
 	}
-	public InputStream getPoster() {
+	public String getPoster() {
 		return poster;
 	}
-	public void setPoster(InputStream poster) {
+	public void setPoster(String poster) {
 		this.poster = poster;
 	}
 	public double getAvgRating() {
@@ -62,6 +70,12 @@ public class Film{
 	}
 	public void setExactUserRating(double exactUserRating) {
 		this.exactUserRating = exactUserRating;
+	}
+	public InputStream getPosterForDownload() {
+		return posterForDownload;
+	}
+	public void setPosterForDownloa(InputStream posterForDownload) {
+		this.posterForDownload = posterForDownload;
 	}
 	
 	@Override

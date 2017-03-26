@@ -1,5 +1,6 @@
 package com.my.recommender.dao.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -90,7 +91,7 @@ public class UserDaoImpl implements UserDao{
 			conn = jdbcTemplate.getDataSource().getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
-			User user = null;
+			User user = new User();
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				user = new User(
@@ -129,14 +130,14 @@ public class UserDaoImpl implements UserDao{
 					rs.getInt(1),
 					rs.getString(2),
 					rs.getInt(3),
-					rs.getBinaryStream(4)
+					FilmDaoImpl.blobAsString(rs.getBlob(4))
 				);
 				films.add(film);
 			}
 			rs.close();
 			ps.close();
 			return films;
-		} catch (SQLException e) {
+		} catch (SQLException | UnsupportedEncodingException e) {
 			throw new RuntimeException(e);
 		} finally {
 			if (conn != null) {
