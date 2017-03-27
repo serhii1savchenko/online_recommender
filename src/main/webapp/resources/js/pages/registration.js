@@ -14,9 +14,9 @@ function register() {
 	}
 */	
 	if(name==""){
-		alert("Username coldn't be empty!");
-	}else if(pass != passC || pass=="" || pass==""){
-		alert("Passwords don't match or one is empty!");
+		alert("Username field can't be empty!");
+	}else if(pass != passC || pass==""){
+		alert("Shure that passwords fields are equal and not empty!");
 	}else{
 	    $.ajax({
 	        cache: false,

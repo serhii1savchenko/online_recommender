@@ -41,12 +41,6 @@ public class FilmController {
 		return "myFilms";
 	}
 	
-	@GetMapping( "user/topRecommended" )										// top 10 movies for current user
-	public String topRecommended(Model model, @SessionAttribute int id) {
-		model.addAttribute("films", filmService.getTopRecommended(id));
-		return "topRecommended";
-	}
-	
 	@GetMapping( "user/film/{filmId}" )
 	public String allFilms(Model model, @PathVariable("filmId") int filmId, @SessionAttribute int id) {
 		model.addAttribute("film", filmService.getFilmByIdWithAvgRating(filmId));
@@ -55,5 +49,10 @@ public class FilmController {
 		return "film";
 	}
 	
-	
+	// TEST
+	@GetMapping( "pred/{userId}/{filmId}" )
+	public String prediction(@PathVariable("userId") int userId, @PathVariable("filmId") int filmId) {
+		System.out.println(recommenderService.getPrediction(userId, filmId));
+		return "allFilms";
+	}
 }

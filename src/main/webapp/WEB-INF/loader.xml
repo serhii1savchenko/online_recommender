@@ -22,5 +22,6 @@
 		</property>
 	</bean>
 	
+	<bean id="recommender" class="com.my.recommender.mahoutRecommender.Recommender" scope="singleton" />
 
 </beans>
