@@ -21,9 +21,9 @@
 		
 		<!-- Apache Mahout -->
 		<dependency>
-   			<groupId>org.apache.mahout</groupId>
-    		<artifactId>mahout</artifactId>
-    		<version>0.12.2</version>
+			<groupId>org.apache.mahout</groupId>
+			<artifactId>mahout-mr</artifactId>
+			<version>0.10.0</version>
 		</dependency>
 	
 		<!-- AspectJ -->
