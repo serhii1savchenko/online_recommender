@@ -23,13 +23,7 @@ public class FilmServiceImpl implements FilmService{
 	public List<Film> getAllFilms() {
 		return filmDao.getAll();
 	}
-
-	@Override
-	public List<Film> getTopRecommended(int userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public Film getFilmById(int filmId) {
 		return filmDao.getById(filmId);
@@ -43,7 +37,19 @@ public class FilmServiceImpl implements FilmService{
 		}
 		return films;
 	}
+
+	@Override
+	public Film getFilmByIdWithAvgRating(int filmId) {
+		Film film = filmDao.getById(filmId);
+		film.setAvgRating(ratingDao.getFilmAverageRating(filmId));
+		return film;
+	}
 	
-	
+	@Override
+	public List<Film> getTopRecommended(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

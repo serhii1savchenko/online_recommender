@@ -8,6 +8,7 @@ import com.my.recommender.model.User;
 public interface UserService {
 
 	void insertUser(User user);
+	
 	List<Film> getUserFilmsWithAvgRatingAndUserRating(int userId);
 
 }

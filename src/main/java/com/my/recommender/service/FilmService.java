@@ -8,7 +8,10 @@ public interface FilmService {
 	
 	List<Film> getAllFilms();
 	List<Film> getAllFilmsWithAvgRating();
-	List<Film> getTopRecommended(int userId);
+	
 	Film getFilmById(int filmId);
+	Film getFilmByIdWithAvgRating( int filmId);
+	
+	List<Film> getTopRecommended(int userId);
 	
 }

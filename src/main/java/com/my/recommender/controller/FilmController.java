@@ -1,8 +1,5 @@
 package com.my.recommender.controller;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.my.recommender.service.FilmService;
 import com.my.recommender.service.RatingService;
 import com.my.recommender.service.RecommenderService;
+import com.my.recommender.service.UserService;
 
 @Controller
 @SessionAttributes("id")
@@ -23,10 +21,13 @@ public class FilmController {
 	FilmService filmService;
 	
 	@Autowired
-	RecommenderService recommenderService;
+	UserService userService;
 	
 	@Autowired
 	RatingService ratingService;
+	
+	@Autowired
+	RecommenderService recommenderService;
 	
 	@GetMapping( "user/allFilms" )
 	public String allFilms(Model model) {
@@ -34,7 +35,13 @@ public class FilmController {
 		return "allFilms";
 	}
 	
-	@GetMapping( "user/topRecommended" )												// top 10 movies for current user
+	@GetMapping( "user/myFilms" )
+	public String myFilms(Model model, @SessionAttribute int id) {
+		model.addAttribute("films", userService.getUserFilmsWithAvgRatingAndUserRating(id));
+		return "myFilms";
+	}
+	
+	@GetMapping( "user/topRecommended" )										// top 10 movies for current user
 	public String topRecommended(Model model, @SessionAttribute int id) {
 		model.addAttribute("films", filmService.getTopRecommended(id));
 		return "topRecommended";
@@ -42,7 +49,7 @@ public class FilmController {
 	
 	@GetMapping( "user/film/{filmId}" )
 	public String allFilms(Model model, @PathVariable("filmId") int filmId, @SessionAttribute int id) {
-		model.addAttribute("film", filmService.getFilmById(filmId));
+		model.addAttribute("film", filmService.getFilmByIdWithAvgRating(filmId));
 		model.addAttribute("prediction", recommenderService.getPrediction(id, filmId));
 		model.addAttribute("real", ratingService.getRating(id, filmId));
 		return "film";

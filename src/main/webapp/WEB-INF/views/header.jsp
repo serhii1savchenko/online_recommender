@@ -36,7 +36,7 @@
       <!-- USER menu -->
       <sec:authorize access="hasRole('USER')">
       	<li><a href="<c:url value="/user/allFilms"/>">All films</a></li>
-      	<li><a href="#">My films</a></li>
+      	<li><a href="<c:url value="/user/myFilms"/>">My films</a></li>
       	<li><a href="#">Top 10 recommended</a></li>
       </sec:authorize>
     </ul>

@@ -1,10 +1,24 @@
-function rate(){
+function rate(film){
 	
-	var sel = document.getElementById("rating");
-	var rating = sel.options[sel.selectedIndex].text;
+	var value = document.getElementById("rating").value;
 	
-	if (rating == sel.defaultValue){
-		alert("lol");
-	}
+	var rating = {
+			filmId : film,
+			rating : value
+		};
+	
+	$.ajax({
+        cache: false,
+        timeout: 10000,
+    	url: context+"/rateFilm/",
+        method: 'POST',
+        data: JSON.stringify(rating),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json"
+    }).done(function (data) {
+    	location.reload();
+    }).fail(function (error) {
+    	alert(error+"ERROR");
+    });
 	
 }

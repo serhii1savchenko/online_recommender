@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.my.recommender.model.User;
-import com.my.recommender.service.impl.UserServiceImpl;
+import com.my.recommender.service.UserService;
 
 @RestController
 public class UserRestController {
 	
 	@Autowired
-	UserServiceImpl userService;
+	UserService userService;
 	
 	@RequestMapping(value = "createUser", method = RequestMethod.POST, produces = "application/json")
 	public User createUser(@RequestBody User jUser){
@@ -24,6 +24,5 @@ public class UserRestController {
 		System.out.println("new user added");
 		return user;
 	}
-	
 	
 }
