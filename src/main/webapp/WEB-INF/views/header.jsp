@@ -31,7 +31,6 @@
       <!-- ADMIN menu -->
       <sec:authorize access="hasRole('ADMIN')">
       	<li><a href="#">Add film</a></li>
-      	<li><a href="#">Renew recommender engine</a></li>
       </sec:authorize>
       <!-- USER menu -->
       <sec:authorize access="hasRole('USER')">

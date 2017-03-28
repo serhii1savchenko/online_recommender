@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.Base64Utils;
 
 import com.my.recommender.dao.FilmDao;
+import com.my.recommender.dao.RatingDao;
 import com.my.recommender.model.Film;
 import com.my.recommender.model.User;
 
@@ -22,6 +24,9 @@ public class FilmDaoImpl implements FilmDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private RatingDao ratingDao;
 
 	@Override
 	public void insert(Film film) {
@@ -109,7 +114,44 @@ public class FilmDaoImpl implements FilmDao {
 			}
 		}
 	}
-
+	
+	@Override
+	public List<Film> getTopNFilmsWithAvgRating(int userId, int n) {
+		List<Film> films = new ArrayList<Film>();
+		String sql = "SELECT idFilm, title, yr, poster, avgRating FROM films "+
+					 "WHERE idFilm NOT IN ( SELECT filmId FROM ratings WHERE userId = ? ) "+
+					 "ORDER BY avgRating DESC LIMIT ? ";
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.getDataSource().getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, userId);
+			ps.setInt(2, n);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Film film = new Film(
+						rs.getInt("idFilm"),
+						rs.getString("title"),
+						rs.getInt("yr"),
+						blobAsString(rs.getBlob("poster"))
+						);
+				film.setAvgRating(ratingDao.getFilmAverageRating(film.getId()));
+				films.add(film);
+			}
+			rs.close();
+			ps.close();
+			return films;
+		} catch (SQLException | UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
+	
 	@Override
 	public List<User> getFilmUsers(int filmId) {
 		List<User> users = new ArrayList<User>();

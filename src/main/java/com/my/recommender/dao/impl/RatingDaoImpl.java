@@ -42,8 +42,30 @@ public class RatingDaoImpl implements RatingDao {
 				} catch (SQLException e) {}
 			}
 		}
+		updateFilmAvgRating(rating.getFilmId());
 	}
 	
+	private void updateFilmAvgRating(int filmId) {
+		String sql = "UPDATE films SET avgRating = ? WHERE idFilm = ?";
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.getDataSource().getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setDouble(1, getFilmAverageRating(filmId));
+			ps.setInt(2, filmId);
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
+
 	@Override
 	public void update(int id, double newRating) {
 		String sql = "UPDATE ratings SET rating = ? WHERE idRating = ?";

@@ -1,6 +1,8 @@
 package com.my.recommender.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
@@ -53,14 +55,14 @@ public class FilmServiceImpl implements FilmService{
 	}
 	
 	@Override
-	public List<Film> getTopRecommended(int userId) {
-		List<RecommendedItem> recommendedItems = null;
+	public List<Film> getTopRecommended(int userId, int howMuch) {
+		List<RecommendedItem> recommendedItems = new ArrayList<RecommendedItem>();
 		try {
-			recommendedItems = rec.getRecommender().recommend(userId, 5);
+			recommendedItems = rec.getRecommender().recommend(userId, howMuch);
 		} catch (TasteException e) {
 			e.printStackTrace();
 		}
-		List<Film> recommendedFilms = null;
+		List<Film> recommendedFilms = new ArrayList<Film>();
 		if (!recommendedItems.isEmpty()){
 			for (RecommendedItem item : recommendedItems){
 				Film film = filmDao.getById((int)item.getItemID());
@@ -69,6 +71,13 @@ public class FilmServiceImpl implements FilmService{
 			}
 		}
 		return recommendedFilms;
+	}
+
+	@Override
+	public List<Film> getTopNFilmsWithAvgRating(int userId, int n) {
+		List<Film> films = null;
+		films = filmDao.getTopNFilmsWithAvgRating(userId, n);
+		return films;
 	}
 
 	

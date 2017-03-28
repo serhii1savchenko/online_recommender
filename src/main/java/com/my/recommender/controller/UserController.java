@@ -26,9 +26,10 @@ public class UserController {
 		return "myFilms";
 	}
 	
-	@GetMapping( "user/topRecommended" )										// top 10 movies for current user
+	@GetMapping( "user/topRecommended" )										// top 5 movies for current user
 	public String topRecommended(Model model, @SessionAttribute int id) {
-		model.addAttribute("films", filmService.getTopRecommended(id));
+		model.addAttribute("films", filmService.getTopRecommended(id, 5));
+		model.addAttribute("filmsByAvgRating", filmService.getTopNFilmsWithAvgRating(id, 5));
 		return "topRecommended";
 	}
 	

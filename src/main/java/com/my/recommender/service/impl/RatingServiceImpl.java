@@ -25,7 +25,10 @@ public class RatingServiceImpl implements RatingService {
 
 	@Override
 	public void insertRating(Rating rating) {
+		boolean noSuchUserOrFilmYet = false;
+		//TODO если в таблице ratings ≈ў≈ Ќ≈“” такого юзера или фильма то flag = true
 		ratingDao.insert(rating);
+		// TODO если flag == true то ќЅЌќ¬»“№ ƒ∆»∆ќ 
 		try {
 			rec.getRecommender().setPreference(rating.getUserId(), rating.getFilmId(), (float) rating.getRating());
 		} catch (TasteException e) {

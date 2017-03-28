@@ -17,4 +17,6 @@ public interface FilmDao {
 
 	void remove(int id);
 
+	List<Film> getTopNFilmsWithAvgRating(int userId, int n);
+
 }
