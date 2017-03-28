@@ -10,6 +10,7 @@ public class Film{
 	private String poster;
 	private double avgRating;
 	private double exactUserRating;
+	private double exactUserPrediction;
 	private InputStream posterForDownload;
 
 	public Film(int id, String title, int year, String poster) {
@@ -70,6 +71,12 @@ public class Film{
 	}
 	public void setExactUserRating(double exactUserRating) {
 		this.exactUserRating = exactUserRating;
+	}
+	public double getExactUserPrediction() {
+		return exactUserPrediction;
+	}
+	public void setExactUserPrediction(double exactUserPrediction) {
+		this.exactUserPrediction = exactUserPrediction;
 	}
 	public InputStream getPosterForDownload() {
 		return posterForDownload;

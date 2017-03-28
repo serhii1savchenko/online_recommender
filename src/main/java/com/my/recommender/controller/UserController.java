@@ -20,7 +20,7 @@ public class UserController {
 	@Autowired
 	FilmService filmService;
 	
-	@GetMapping( "myFilms" )
+	@GetMapping( "user/myFilms" )
 	public String myFilms(Model model, @SessionAttribute int id) {
 		model.addAttribute("films", userService.getUserFilmsWithAvgRatingAndUserRating(id));
 		return "myFilms";

@@ -14,26 +14,45 @@ import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.my.recommender.service.RecommenderService;
+import com.my.recommender.service.impl.RecommenderServiceImpl;
 
 @Component
 public class Recommender {
 
 	static GenericUserBasedRecommender recommender = null;
-	
-	@Autowired
-	RecommenderService recommenderService;
 
-	public GenericUserBasedRecommender getRecommender(File file) throws IOException, TasteException{
+	@Autowired
+	RecommenderServiceImpl recommenderService;
+
+	public GenericUserBasedRecommender buildRecommender(File file){
 		if (recommender != null){
 			return recommender;
 		}else{
-			DataModel model = new FileDataModel(file);
-			UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
+			DataModel model = null;
+			try {
+				model = new FileDataModel(file);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			UserSimilarity similarity = null;
+			try {
+				similarity = new PearsonCorrelationSimilarity(model);
+			} catch (TasteException e) {
+				e.printStackTrace();
+			}
 			UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0, similarity, model);
 			recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
 			return recommender;
 		}
 	}
-	
+
+	public GenericUserBasedRecommender getRecommender(){
+		if (recommender != null){
+			return recommender;
+		}else{
+			recommender = buildRecommender(recommenderService.getParsedDataFile());
+			return recommender;
+		}
+	}
+
 }

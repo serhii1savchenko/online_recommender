@@ -2,16 +2,22 @@ package com.my.recommender.service.impl;
 
 import java.util.List;
 
+import org.apache.mahout.cf.taste.common.TasteException;
+import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.my.recommender.dao.FilmDao;
 import com.my.recommender.dao.RatingDao;
+import com.my.recommender.mahoutRecommender.Recommender;
 import com.my.recommender.model.Film;
 import com.my.recommender.service.FilmService;
 
 @Component
 public class FilmServiceImpl implements FilmService{
+	
+	@Autowired
+	private Recommender rec;
 	
 	@Autowired
 	private FilmDao filmDao;
@@ -48,8 +54,21 @@ public class FilmServiceImpl implements FilmService{
 	
 	@Override
 	public List<Film> getTopRecommended(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<RecommendedItem> recommendedItems = null;
+		try {
+			recommendedItems = rec.getRecommender().recommend(userId, 5);
+		} catch (TasteException e) {
+			e.printStackTrace();
+		}
+		List<Film> recommendedFilms = null;
+		if (!recommendedItems.isEmpty()){
+			for (RecommendedItem item : recommendedItems){
+				Film film = filmDao.getById((int)item.getItemID());
+				film.setExactUserPrediction((double)item.getValue());
+				recommendedFilms.add(film);
+			}
+		}
+		return recommendedFilms;
 	}
 
 	

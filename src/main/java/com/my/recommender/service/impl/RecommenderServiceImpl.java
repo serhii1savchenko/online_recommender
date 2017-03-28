@@ -19,7 +19,7 @@ import com.my.recommender.service.RecommenderService;
 
 @Component
 public class RecommenderServiceImpl implements RecommenderService {
-
+		
 	@Autowired
 	private RatingDao ratingDao;
 	
@@ -33,10 +33,10 @@ public class RecommenderServiceImpl implements RecommenderService {
 	public double getPrediction(int userId, int filmId) {
 		double prediction = -1.0;
 		try {
-			GenericUserBasedRecommender recommender = rec.getRecommender(getParsedDataFile());
+			GenericUserBasedRecommender recommender = rec.getRecommender();
 			prediction = recommender.estimatePreference(userId, filmId);
 			if(prediction != prediction){ prediction = -1.0;}			// if prediction is NaN
-		} catch (IOException | TasteException e) {
+		} catch (TasteException e) {
 			e.printStackTrace();
 			prediction = -1.0;											// TasteException (no such user or film)
 		}

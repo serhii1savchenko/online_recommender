@@ -8,7 +8,6 @@ public class HomeController {
 
 	@GetMapping({ "", "/", "home" })
 	public String mainPage() {
-		System.out.println("foo");
 		return "home";
 	}
 
@@ -34,7 +33,7 @@ public class HomeController {
 	
 	@GetMapping( "user" )
 	public String user() {
-		return "userPage";
+		return "allFilms";
 	}
 	
 }
