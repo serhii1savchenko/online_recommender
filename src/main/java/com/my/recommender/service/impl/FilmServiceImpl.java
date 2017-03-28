@@ -39,9 +39,10 @@ public class FilmServiceImpl implements FilmService{
 	}
 
 	@Override
-	public Film getFilmByIdWithAvgRating(int filmId) {
+	public Film getFilmByIdWithAvgRatingAndUserRating(int userId, int filmId) {
 		Film film = filmDao.getById(filmId);
 		film.setAvgRating(ratingDao.getFilmAverageRating(filmId));
+		film.setExactUserRating(ratingDao.getByUserFilm(userId, filmId).getRating());
 		return film;
 	}
 	

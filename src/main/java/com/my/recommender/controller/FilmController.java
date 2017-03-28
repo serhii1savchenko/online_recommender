@@ -43,9 +43,8 @@ public class FilmController {
 	
 	@GetMapping( "user/film/{filmId}" )
 	public String allFilms(Model model, @PathVariable("filmId") int filmId, @SessionAttribute int id) {
-		model.addAttribute("film", filmService.getFilmByIdWithAvgRating(filmId));
+		model.addAttribute("film", filmService.getFilmByIdWithAvgRatingAndUserRating(id, filmId));
 		model.addAttribute("prediction", recommenderService.getPrediction(id, filmId));
-		model.addAttribute("real", ratingService.getRating(id, filmId));
 		return "film";
 	}
 	

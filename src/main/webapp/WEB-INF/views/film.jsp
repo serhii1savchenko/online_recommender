@@ -7,9 +7,7 @@
 		</div>
 		<div class="col-sm-6" style="padding-top:25px;">
 			<div style="margin: auto;">
-				<h2>
-					Title: ${film.title} <br/><br/>
-				</h2>
+				<h2>Title: ${film.title}<br/><br/></h2>
 				<h3>
 					Year: ${film.year} <br/><br/>
 					<c:choose>
@@ -21,8 +19,8 @@
 						</c:otherwise>
 					</c:choose>
 					<c:choose>
-					<c:when test="${real > 0}">
-					<h3>You have rated this film for ${real} out of 5</h3>
+					<c:when test="${film.exactUserRating > 0}">
+					<h3>You have rated this film for ${film.exactUserRating} out of 5</h3>
 					</c:when>
 					<c:otherwise>
 			       		<h3>Rate this film</h3>
@@ -39,7 +37,15 @@
 				       	 		<option>5.0</option>
 				       	 	</select><br/>
 			       	 		<button class="btn btn-success" onclick="rate(${film.id});">Rate!</button>
-						</div>
+			       	 	</div>
+			       	 	<c:choose>
+			       	 		<c:when test="${prediction > 0}">
+								<h4>We predict: ${prediction}</h4>
+							</c:when>
+			       	 		<c:otherwise>
+			       	 			<h4>We can't predict your rating</h4>
+			       	 		</c:otherwise>
+			       	 	</c:choose>
 					</c:otherwise>
 				</c:choose>
 				</h3>
