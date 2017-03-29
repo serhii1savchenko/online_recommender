@@ -12,6 +12,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<!-- Bootstrap Star Rating -->
+	<link href="<c:url value="/resources/style/star-rating.css"/>" media="all" rel="stylesheet" type="text/css" />
+	<script src="<c:url value="/resources/star-rating.js"/>" type="text/javascript"></script>
 	<!-- Google Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>

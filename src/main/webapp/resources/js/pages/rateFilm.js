@@ -1,6 +1,6 @@
 function rate(film){
 	
-	var value = document.getElementById("rating").value;
+	var value = document.getElementById("input").value;
 	
 	var rating = {
 			filmId : film,
