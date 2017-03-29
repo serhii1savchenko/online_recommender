@@ -5,7 +5,7 @@
 		<div class="col-md-12">
 			<c:forEach var="film" items="${films}">
 				<a href="<c:url value="/user/film/${film.id}"/>" style="color: black;" onMouseOver="this.style.color='#00008B';" onMouseOut="this.style.color='black';">
-					<div class="col-md-2" style="text-align: center; padding-bottom: 30px;">
+					<div class="col-md-2" style="text-align: center; padding-bottom: 30px; height:300px;">
 						<p>
 							${film.title} (${film.year})<br/>
 							<c:choose>
