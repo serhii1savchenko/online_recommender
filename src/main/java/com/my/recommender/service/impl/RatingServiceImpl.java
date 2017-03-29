@@ -1,5 +1,7 @@
 package com.my.recommender.service.impl;
 
+import java.util.List;
+
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,14 +27,25 @@ public class RatingServiceImpl implements RatingService {
 
 	@Override
 	public void insertRating(Rating rating) {
-		boolean noSuchUserOrFilmYet = false;
-		//TODO если в таблице ratings ≈ў≈ Ќ≈“” такого юзера или фильма то flag = true
+		boolean userPresence = false;
+		boolean filmPresence = false;
+		// If there still no such user or film in 'ratings' table
+		List<Rating> allExistingRatings = ratingDao.getAll();
+		for (Rating element : allExistingRatings){
+			if(element.getUserId()==rating.getUserId()) { userPresence = true; }
+			if(element.getFilmId()==rating.getFilmId()) { filmPresence = true; }
+		}
+		// We insert them
 		ratingDao.insert(rating);
-		// TODO если flag == true то ќЅЌќ¬»“№ ƒ∆»∆ќ 
-		try {
-			rec.getRecommender().setPreference(rating.getUserId(), rating.getFilmId(), (float) rating.getRating());
-		} catch (TasteException e) {
-			e.printStackTrace();
+		// And renew recommender engine ==> recommender contains this rating
+		if (!userPresence || !filmPresence) { rec.renewRecommender(); }
+		// If user and film already exist in table
+		if (userPresence && filmPresence){
+			try {
+				rec.getRecommender().setPreference(rating.getUserId(), rating.getFilmId(), (float) rating.getRating());
+			} catch (TasteException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

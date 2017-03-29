@@ -54,5 +54,9 @@ public class Recommender {
 			return recommender;
 		}
 	}
-
+	
+	public void renewRecommender(){
+		recommender = buildRecommender(recommenderService.getParsedDataFile());
+	}
+	
 }
