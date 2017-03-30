@@ -17,7 +17,7 @@
 				</div>
 			</a>
 		</c:forEach><hr/>
-		<h4>And here is list of top rated films you havn't seen yet</h4><hr/>
+		<h4>And here is a list of top rated films you havn't seen yet</h4><hr/>
 		<c:forEach var="film" items="${filmsByAvgRating}">
 			<a href="<c:url value="/user/film/${film.id}"/>" style="color: black;" onMouseOver="this.style.color='#00008B';" onMouseOut="this.style.color='black';">
 				<div class="col-md-2" style="text-align: center; padding-bottom: 30px; height:300px;">
@@ -29,7 +29,7 @@
 		</c:forEach>
     </c:when>
     <c:otherwise>
-        <h4>Sorry, we can't give you personalized recommendations. Here is list of top rated films you havn't seen yet</h4><hr/>
+        <h4>Sorry, we can't give you personalized recommendations. Here is a list of top rated films you havn't seen yet</h4><hr/>
         <c:forEach var="film" items="${filmsByAvgRating}">
 			<a href="<c:url value="/user/film/${film.id}"/>" style="color: black;" onMouseOver="this.style.color='#00008B';" onMouseOut="this.style.color='black';">
 				<div class="col-md-2" style="text-align: center; padding-bottom: 30px; height:300px;">

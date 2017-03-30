@@ -34,8 +34,9 @@ public class HomeController {
 	}
 
 	@GetMapping( "admin" )
-	public String admin() {
-		return "adminPage";
+	public String admin(Model model) {
+		model.addAttribute("films", filmService.getAllFilmsWithAvgRating());
+		return "allFilms";
 	}
 	
 	@GetMapping( "user" )
@@ -43,5 +44,4 @@ public class HomeController {
 		model.addAttribute("films", filmService.getAllFilmsWithAvgRating());
 		return "allFilms";
 	}
-	
 }

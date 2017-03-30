@@ -58,5 +58,4 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", password=" + password + ", role=" + role.getRole() + "]";
 	}
-	
 }

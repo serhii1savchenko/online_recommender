@@ -7,12 +7,7 @@ function register() {
 			name: name,
         	password: pass
         };
-/*	if (window.jQuery) {
-	    alert('You are running jQuery version: ' + jQuery.fn.jquery);
-	} else {
-	    alert('jQuery is not installed');
-	}
-*/	
+	
 	if(name==""){
 		alert("Username field can't be empty!");
 	}else if(pass != passC || pass==""){
@@ -20,7 +15,7 @@ function register() {
 	}else{
 	    $.ajax({
 	        cache: false,
-	        timeout: 10000,
+	        timeout: 15000,
 	    	url: context+"/createUser/",
 	        method: 'POST',
 	        data: JSON.stringify(user),
@@ -40,4 +35,5 @@ function register() {
 	    	document.getElementsByClassName("alertBox")[0].style.width = "30%";
 	    });
 	}
+	
 }

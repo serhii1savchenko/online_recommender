@@ -3,7 +3,7 @@ package com.my.recommender.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.my.recommender.dao.RatingDao;
 import com.my.recommender.dao.UserDao;
@@ -11,7 +11,7 @@ import com.my.recommender.model.Film;
 import com.my.recommender.model.User;
 import com.my.recommender.service.UserService;
 
-@Component
+@Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired

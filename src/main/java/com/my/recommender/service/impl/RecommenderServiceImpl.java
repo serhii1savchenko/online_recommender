@@ -9,14 +9,14 @@ import java.util.List;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.my.recommender.dao.RatingDao;
 import com.my.recommender.mahoutRecommender.Recommender;
 import com.my.recommender.model.Rating;
 import com.my.recommender.service.RecommenderService;
 
-@Component
+@Service
 public class RecommenderServiceImpl implements RecommenderService {
 		
 	@Autowired

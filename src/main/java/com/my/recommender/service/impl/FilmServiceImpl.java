@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.my.recommender.dao.FilmDao;
 import com.my.recommender.dao.RatingDao;
@@ -14,7 +14,7 @@ import com.my.recommender.mahoutRecommender.Recommender;
 import com.my.recommender.model.Film;
 import com.my.recommender.service.FilmService;
 
-@Component
+@Service
 public class FilmServiceImpl implements FilmService{
 	
 	@Autowired
@@ -78,6 +78,4 @@ public class FilmServiceImpl implements FilmService{
 		films = filmDao.getTopNFilmsWithAvgRating(userId, n);
 		return films;
 	}
-
-	
 }

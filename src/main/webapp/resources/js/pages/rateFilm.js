@@ -9,7 +9,7 @@ function rate(film){
 	
 	$.ajax({
         cache: false,
-        timeout: 10000,
+        timeout: 15000,
     	url: context+"/rateFilm/",
         method: 'POST',
         data: JSON.stringify(rating),
