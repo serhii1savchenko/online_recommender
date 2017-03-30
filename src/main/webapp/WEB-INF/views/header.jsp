@@ -36,7 +36,7 @@
       	<li><a href="#">Add film</a></li>
       </sec:authorize>
       <!-- USER menu -->
-      <sec:authorize access="hasRole('USER')">
+      <sec:authorize access="isAuthenticated()">
       	<li><a href="<c:url value="/user/allFilms"/>">All films</a></li>
       	<li><a href="<c:url value="/user/myFilms"/>">My films</a></li>
       	<li><a href="<c:url value="/user/topRecommended"/>">Top 5 recommended</a></li>

@@ -2,7 +2,6 @@ package com.my.recommender.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
 
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;

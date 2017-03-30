@@ -11,7 +11,6 @@ import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.my.recommender.dao.DataDao;
 import com.my.recommender.dao.RatingDao;
 import com.my.recommender.mahoutRecommender.Recommender;
 import com.my.recommender.model.Rating;
@@ -24,9 +23,6 @@ public class RecommenderServiceImpl implements RecommenderService {
 	private RatingDao ratingDao;
 	
 	@Autowired
-	private DataDao dataDao;
-	
-	@Autowired
 	private Recommender rec;
 	
 	@Override
@@ -34,7 +30,7 @@ public class RecommenderServiceImpl implements RecommenderService {
 		double prediction = -1.0;
 		try {
 			GenericUserBasedRecommender recommender = rec.getRecommender();
-			prediction = recommender.estimatePreference(userId, filmId);
+			prediction = (recommender.estimatePreference(userId, filmId));
 			if(prediction != prediction){ prediction = -1.0;}			// if prediction is NaN
 		} catch (TasteException e) {
 			e.printStackTrace();
@@ -74,20 +70,6 @@ public class RecommenderServiceImpl implements RecommenderService {
 		}
 		File file = new File(path);
 		return file;
-	}
-	
-	
-///////////////////////////////////////////////////////	
-	@Override
-	public void insertToDatabase(File file){
-		dataDao.insert(file);
-	}
-	
-	@Override
-	public File getLastFromDatabase(){
-		String path = dataDao.getLast();
-		File last = new File (path);
-		return last;
 	}
 	
 }

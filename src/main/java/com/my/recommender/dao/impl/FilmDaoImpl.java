@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -156,7 +155,7 @@ public class FilmDaoImpl implements FilmDao {
 	public List<User> getFilmUsers(int filmId) {
 		List<User> users = new ArrayList<User>();
 		String sql = "SELECT users.idUser, users.name, users.password FROM users INNER JOIN ratings ON users.idUser = ratings.userId " + 
-				"WHERE ratings.filmId = ?";
+					 "WHERE ratings.filmId = ?";
 		Connection conn = null;
 		try {
 			conn = jdbcTemplate.getDataSource().getConnection();
