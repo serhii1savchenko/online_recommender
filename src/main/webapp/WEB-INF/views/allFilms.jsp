@@ -10,7 +10,7 @@
 							${film.title} (${film.year})<br/>
 							<c:choose>
 								<c:when test="${film.avgRating > 0}">
-									Rating: ${film.avgRating}
+									Average rating: <fmt:formatNumber value="${film.avgRating}" type="number" pattern="#.##"/>
 								</c:when>
 								<c:otherwise>
 		        					No ratings yet

@@ -11,4 +11,6 @@ public interface UserService {
 	
 	List<Film> getUserFilmsWithAvgRatingAndUserRating(int userId);
 
+	List<Film> getUserNotWatchedFilms(int userId);
+
 }

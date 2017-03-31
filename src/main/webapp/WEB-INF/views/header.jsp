@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <script type="text/javascript"> var context = '${pageContext.request.contextPath}';</script>
@@ -38,6 +39,7 @@
       <!-- USER menu -->
       <sec:authorize access="isAuthenticated()">
       	<li><a href="<c:url value="/user/allFilms"/>">All films</a></li>
+      	<li><a href="<c:url value="/user/notWatched"/>">Not watched</a></li>
       	<li><a href="<c:url value="/user/myFilms"/>">My films</a></li>
       	<li><a href="<c:url value="/user/topRecommended"/>">Top 5 recommended</a></li>
       </sec:authorize>

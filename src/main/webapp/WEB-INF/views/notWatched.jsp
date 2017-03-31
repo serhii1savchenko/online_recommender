@@ -8,7 +8,14 @@
 					<div class="col-md-2" style="text-align: center; padding-bottom: 30px; height:300px;">
 						<p>${film.title} (${film.year})<br/>
 						Average rating: <fmt:formatNumber value="${film.avgRating}" type="number" pattern="#.##"/><br/>
-						Your rating: <fmt:formatNumber value="${film.exactUserRating}" type="number" pattern="#.##"/></p>
+						<c:choose>
+							<c:when test="${film.exactUserPrediction > 0}">
+								Prediction for you: <fmt:formatNumber value="${film.exactUserPrediction}" type="number" pattern="#.##"/></p>
+							</c:when>
+							<c:otherwise>
+								Sorry, we can't predict your rating
+							</c:otherwise>
+						</c:choose>
 						<img src="data:image/jpg;base64,${film.poster}" width="150px" height="200px"/><!-- <img src="data:image/jpg;base64,${film.poster}" width="85%" height="55%"/> -->
 					</div>
 				</a>

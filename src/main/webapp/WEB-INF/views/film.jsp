@@ -16,10 +16,10 @@
 							<h3>Average Rating: </h3>
 							<div class="row">
 								<div class="col-sm-1" >
-									(${film.avgRating})
+									(<fmt:formatNumber value="${film.avgRating}" type="number" pattern="#.##"/>)
 								</div>
 								<div class="col-sm-11" >
-									<input id="outputAvg" name="outputAvg" value="${film.avgRating}" class="rating rating-loading" data-size="md" data-show-clear="false" data-readonly="true" data-step="0.1" />
+									<input id="outputAvg" name="outputAvg" value="${film.avgRating}" class="rating rating-loading" data-size="md" data-show-clear="false" data-readonly="true" data-step="0.01" />
 								</div>
 							</div>
 							</c:when>
@@ -32,7 +32,7 @@
 						<h3>You have rated this film for:</h3>
 						<div class="row">
 							<div class="col-sm-1" >
-								(${film.exactUserRating})
+								(<fmt:formatNumber value="${film.exactUserRating}" type="number" pattern="#.##"/>)
 							</div>
 							<div class="col-sm-11" >
 								<input id="outputUser" name="outputUser" value="${film.exactUserRating}" class="rating rating-loading" data-size="md" data-show-clear="false" data-readonly="true" data-step="0.1" />
@@ -46,7 +46,7 @@
 				       	 		<hr/>
 				       	 	<c:choose>
 				       	 		<c:when test="${prediction > 0}">
-									<h4>We predict: ${prediction}</h4>
+									<h4>We predict: <fmt:formatNumber value="${prediction}" type="number" pattern="#.##"/> </h4>
 								</c:when>
 				       	 		<c:otherwise>
 				       	 			<h4>We can't predict your rating</h4>

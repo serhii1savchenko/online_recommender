@@ -149,6 +149,41 @@ public class UserDaoImpl implements UserDao{
 	}
 	
 	@Override
+	public List<Film> getUserNotWatchedFilmsWithAvgRating(int userId) {
+		List<Film> films = new ArrayList<Film>();
+		String sql = "SELECT films.idFilm, films.title, films.yr, films.poster, films.avgRating FROM films " + 
+					 "WHERE films.idFilm NOT IN ( SELECT ratings.filmId FROM ratings WHERE ratings.userId = ? )";
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.getDataSource().getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, userId);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Film film = new Film(
+					rs.getInt(1),
+					rs.getString(2),
+					rs.getInt(3),
+					FilmDaoImpl.blobAsString(rs.getBlob(4))
+				);
+				film.setAvgRating(rs.getDouble(5));
+				films.add(film);
+			}
+			rs.close();
+			ps.close();
+			return films;
+		} catch (SQLException | UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+				conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
+	
+	@Override
 	public void remove(int id) {
 		String sql = "DELETE FROM users WHERE idUser = ?";
 		Connection conn = null;
@@ -200,4 +235,5 @@ public class UserDaoImpl implements UserDao{
 	    }
 	    return md5Hex;
 	}
+
 }

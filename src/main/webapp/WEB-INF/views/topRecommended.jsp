@@ -12,8 +12,8 @@
 				<a href="<c:url value="/user/film/${film.id}"/>" style="color: black;" onMouseOver="this.style.color='#00008B';" onMouseOut="this.style.color='black';">
 					<div class="col-md-2" style="text-align: center; padding-bottom: 30px; height:300px;">
 						<p>${film.title} (${film.year})<br/>
-						Average rating: ${film.avgRating}<br/>
-						Prediction for you: ${film.exactUserPrediction}</p>
+						Average rating: <fmt:formatNumber value="${film.avgRating}" type="number" pattern="#.##"/><br/>
+						Prediction for you: <fmt:formatNumber value="${film.exactUserPrediction}" type="number" pattern="#.##"/></p>
 						<img src="data:image/jpg;base64,${film.poster}" width="150px" height="200px"/><!-- <img src="data:image/jpg;base64,${film.poster}" width="85%" height="55%"/> -->
 					</div>
 				</a>
@@ -25,7 +25,7 @@
 				<a href="<c:url value="/user/film/${film.id}"/>" style="color: black;" onMouseOver="this.style.color='#00008B';" onMouseOut="this.style.color='black';">
 					<div class="col-md-2" style="text-align: center; padding-bottom: 30px; height:300px;">
 						<p>${film.title} (${film.year})<br/>
-						Average rating: ${film.avgRating}<br/>
+						Average rating: <fmt:formatNumber value="${film.avgRating}" type="number" pattern="#.##"/><br/>
 						<img src="data:image/jpg;base64,${film.poster}" width="150px" height="200px"/>
 					</div>
 				</a>
@@ -38,7 +38,7 @@
 			<a href="<c:url value="/user/film/${film.id}"/>" style="color: black;" onMouseOver="this.style.color='#00008B';" onMouseOut="this.style.color='black';">
 				<div class="col-md-2" style="text-align: center; padding-bottom: 30px; height:300px;">
 					<p>${film.title} (${film.year})<br/>
-					Average rating: ${film.avgRating}<br/>
+					Average rating: <fmt:formatNumber value="${film.avgRating}" type="number" pattern="#.##"/><br/>
 					<img src="data:image/jpg;base64,${film.poster}" width="150px" height="200px"/>
 				</div>
 			</a>

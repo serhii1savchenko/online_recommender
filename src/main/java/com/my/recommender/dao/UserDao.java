@@ -20,4 +20,6 @@ public interface UserDao {
 
 	UserAuth getUserAuth(String name);
 
+	List<Film> getUserNotWatchedFilmsWithAvgRating(int userId);
+
 }
