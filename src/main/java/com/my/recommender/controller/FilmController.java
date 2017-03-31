@@ -34,5 +34,5 @@ public class FilmController {
 		model.addAttribute("prediction", recommenderService.getPrediction(id, filmId));
 		return "film";
 	}
-	
+
 }

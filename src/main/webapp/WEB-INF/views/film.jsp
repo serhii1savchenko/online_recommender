@@ -41,7 +41,7 @@
 						</c:when>
 						<c:otherwise>
 				       		<h3>Rate this film</h3>
-								<input id="input" class="rating rating-loading" value="3" data-min="0.5" data-max="5" data-step="0.5" data-size="lg" data-show-clear="false" />
+								<input id="input" class="rating rating-loading" data-min="0.5" data-max="5" data-step="0.5" data-size="lg" data-show-clear="false" />
 				       	 		<button class="btn btn-success btn-md" onclick="rate(${film.id});">Rate!</button>
 				       	 		<hr/>
 				       	 	<c:choose>

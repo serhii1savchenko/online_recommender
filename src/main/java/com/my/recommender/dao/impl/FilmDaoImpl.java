@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.Base64Utils;
 
 import com.my.recommender.dao.FilmDao;
-import com.my.recommender.dao.RatingDao;
 import com.my.recommender.model.Film;
 import com.my.recommender.model.User;
 
@@ -24,9 +23,6 @@ public class FilmDaoImpl implements FilmDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	@Autowired
-	private RatingDao ratingDao;
-
 	@Override
 	public void insert(Film film) {
 		String sql = "INSERT INTO films (title, yr, poster) VALUES (?, ?, ?)";
@@ -99,6 +95,7 @@ public class FilmDaoImpl implements FilmDao {
 						rs.getInt("yr"),
 						blobAsString(rs.getBlob("poster"))
 						);
+				film.setAvgRating(rs.getDouble("avgRating"));
 			}
 			rs.close();
 			ps.close();
@@ -134,7 +131,7 @@ public class FilmDaoImpl implements FilmDao {
 						rs.getInt("yr"),
 						blobAsString(rs.getBlob("poster"))
 						);
-				film.setAvgRating(ratingDao.getFilmAverageRating(film.getId()));
+				film.setAvgRating(rs.getDouble("avgRating"));
 				films.add(film);
 			}
 			rs.close();

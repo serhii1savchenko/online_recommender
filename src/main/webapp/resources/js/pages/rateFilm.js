@@ -7,18 +7,21 @@ function rate(film){
 			rating : value
 		};
 	
-	$.ajax({
-        cache: false,
-        timeout: 15000,
-    	url: context+"/rateFilm/",
-        method: 'POST',
-        data: JSON.stringify(rating),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json"
-    }).done(function (data) {
-    	location.reload();
-    }).fail(function (error) {
-    	alert(error+"ERROR");
-    });
-	
+	if(value>0){
+		$.ajax({
+	        cache: false,
+	        timeout: 15000,
+	    	url: context+"/rateFilm/",
+	        method: 'POST',
+	        data: JSON.stringify(rating),
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "json"
+	    }).done(function (data) {
+	    	location.reload();
+	    }).fail(function (error) {
+	    	alert(error+"ERROR");
+	    });
+	}else{
+		alert("Rating must be between 1 and 5 stars!");
+	}
 }

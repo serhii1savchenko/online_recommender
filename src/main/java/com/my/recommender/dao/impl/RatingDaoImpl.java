@@ -45,7 +45,8 @@ public class RatingDaoImpl implements RatingDao {
 		updateFilmAvgRating(rating.getFilmId());
 	}
 	
-	private void updateFilmAvgRating(int filmId) {
+	@Override
+	public void updateFilmAvgRating(int filmId) {
 		String sql = "UPDATE films SET avgRating = ? WHERE idFilm = ?";
 		Connection conn = null;
 		try {
@@ -67,14 +68,14 @@ public class RatingDaoImpl implements RatingDao {
 	}
 
 	@Override
-	public void update(int id, double newRating) {
+	public void update(Rating rating) {
 		String sql = "UPDATE ratings SET rating = ? WHERE idRating = ?";
 		Connection conn = null;
 		try {
 			conn = jdbcTemplate.getDataSource().getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setDouble(1, newRating);
-			ps.setInt(2, id);
+			ps.setDouble(1, rating.getRating());
+			ps.setInt(2, rating.getId());
 			ps.executeUpdate();
 			ps.close();
 		} catch (SQLException e) {
@@ -86,6 +87,7 @@ public class RatingDaoImpl implements RatingDao {
 				} catch (SQLException e) {}
 			}
 		}
+		updateFilmAvgRating(rating.getFilmId());
 	}
 	
 	@Override
