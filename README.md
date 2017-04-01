@@ -1,2 +1,2 @@
-# online_recommender
+# online film recommender
 using Apache Mahout
