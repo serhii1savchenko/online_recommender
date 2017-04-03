@@ -34,7 +34,7 @@
     <ul class="nav navbar-nav">
       <!-- ADMIN menu -->
       <sec:authorize access="hasRole('ADMIN')">
-      	<li><a href="#">Add film</a></li>
+      	<li><a href="<c:url value="/admin/addFilm"/>">Add film</a></li>
       </sec:authorize>
       <!-- USER menu -->
       <sec:authorize access="isAuthenticated()">
