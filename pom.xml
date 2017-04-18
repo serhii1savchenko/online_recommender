@@ -16,16 +16,16 @@
 		<junit.version>4.12</junit.version>
 		<log4j.version>2.6.1</log4j.version>
 	</properties>
-	
+
 	<dependencies>
-		
+
 		<!-- Apache Mahout -->
 		<dependency>
 			<groupId>org.apache.mahout</groupId>
 			<artifactId>mahout-mr</artifactId>
 			<version>0.12.0</version>
 		</dependency>
-	
+
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -204,7 +204,7 @@
 			<artifactId>log4j-web</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -219,8 +219,37 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-		</plugins>
 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.github.jsimone</groupId>
+									<artifactId>webapp-runner</artifactId>
+									<version>8.5.5.2</version>
+									<destFileName>webapp-runner.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12</version>
+			</plugin>
+
+		</plugins>
 	</build>
 
 </project>
