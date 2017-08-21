@@ -1,3 +1,3 @@
 # online movie recommendation service
 
-using Apache Mahout. Spring MVC & Security
+Movie Recommendation Service (using Apache Mahout and Spring MVC & Security)
