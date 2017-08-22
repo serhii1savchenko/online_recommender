@@ -1,14 +1,14 @@
 -- Roles
-INSERT INTO `roles` (`role`) VALUES
+INSERT INTO `Roles` (`role`) VALUES
 ('ADMIN'),
 ('USER');
 
 -- Administrator
-INSERT INTO `users` (`idUser`, `name`, `password`, roleId) VALUES
+INSERT INTO `Users` (`idUser`, `name`, `password`, roleId) VALUES
 (0, 'Serhii', '202cb962ac59075b964b07152d234b70', 1);
 
 -- Users
-INSERT INTO `users` (`name`, `password`, roleId) VALUES
+INSERT INTO `Users` (`name`, `password`, roleId) VALUES
 ('user1', '202cb962ac59075b964b07152d234b70', 2),
 ('user2', '202cb962ac59075b964b07152d234b70', 2),
 ('user3', '202cb962ac59075b964b07152d234b70', 2),

@@ -1,5 +1,5 @@
 -- At least one rating should be present for Mahout recommender normal startup
-INSERT INTO `ratings` (`userId`, `filmId`, `rating`) VALUES
+INSERT INTO `Ratings` (`userId`, `filmId`, `rating`) VALUES
 ('1', '1', '4.0'),
 ('1', '2', '4.0'),
 ('1', '3', '4.0'),
